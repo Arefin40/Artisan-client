@@ -11,6 +11,7 @@ export default {
          },
          colors: {
             primary: colors.emerald,
+            clay: "#e0b18b",
          },
          keyframes: {
             "scale-in": {

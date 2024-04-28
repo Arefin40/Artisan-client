@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout";
 import ErrorPage from "@pages/ErrorPage";
 import Login from "@pages/Login";
 import Register from "@pages/Register";
+import Homepage from "@pages/Homepage";
 import Contact from "@pages/Contact";
 
 const router = createBrowserRouter([
@@ -13,13 +14,8 @@ const router = createBrowserRouter([
       children: [
          {
             path: "/",
-            element: (
-               <div className="min-h-screen flex items-center justify-center">
-                  <h1 className="font-display text-6xl font-bold text-gray-800">
-                     Hello World!
-                  </h1>
-               </div>
-            ),
+            element: <Homepage />,
+            loader: () => fetch("http://localhost:3000/"),
          },
          {
             path: "/contact",
