@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "@layouts/Layout";
+import PrivateRoute from "@layouts/PrivateRoute";
 import ErrorPage from "@pages/ErrorPage";
 import Login from "@pages/Login";
 import Register from "@pages/Register";
 import Homepage from "@pages/Homepage";
 import Contact from "@pages/Contact";
+import AddPainting from "@pages/AddPainting";
 
 const router = createBrowserRouter([
    {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
             path: "/",
             element: <Homepage />,
             loader: () => fetch("http://localhost:3000/"),
+         },
+         {
+            path: "/paintings/add",
+            element: (
+               <PrivateRoute>
+                  <AddPainting />
+               </PrivateRoute>
+            ),
          },
          {
             path: "/contact",

@@ -15,6 +15,10 @@ const navigations = [
       title: "Home",
    },
    {
+      path: "/paintings/add",
+      title: "Add Craft Item",
+   },
+   {
       path: "/contact",
       title: "Contact us",
    },
