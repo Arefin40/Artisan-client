@@ -4,6 +4,7 @@ import { Autoplay } from "swiper/modules";
 import HeroSection from "@containers/HeroSection";
 import SectionHeading from "@containers/SectionHeading";
 import FiveStar from "@containers/FiveStar";
+import NewsLetter from "@containers/NewsLetter";
 
 export default () => {
    const { categories } = useLoaderData();
@@ -131,6 +132,8 @@ export default () => {
                </SwiperSlide>
             </Swiper>
          </section>
+
+         <NewsLetter />
       </>
    );
 };
