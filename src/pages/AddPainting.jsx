@@ -1,5 +1,5 @@
 import Button from "@components/Button";
-import { Input } from "@components/Form";
+import { Input, Select } from "@components/Form";
 import { useForm } from "react-hook-form";
 import classNames from "@utils/classNames";
 import toast from "react-hot-toast";
@@ -7,12 +7,12 @@ import { getEmailValidationSchema } from "@utils/ValidationSchema";
 
 export default () => {
    const subcategories = [
-      "Landscape",
-      "Portrait",
-      "Watercolour",
-      "Oil",
-      "Charcoal",
-      "Cartoon",
+      { label: "Landscape", value: "landscape" },
+      { label: "Portrait", value: "portrait" },
+      { label: "Watercolour", value: "watercolour" },
+      { label: "Oil", value: "oil" },
+      { label: "Charcoal", value: "charcoal" },
+      { label: "Cartoon", value: "cartoon" },
    ];
 
    const {
@@ -22,22 +22,19 @@ export default () => {
       formState: { errors },
    } = useForm();
 
-   const onSubmit = async (data) => {
-      try {
-         const response = await fetch("http://localhost:3000/paintings/add", {
-            method: "POST", // or 'PUT'
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-         });
-
-         await response.json();
-         toast.success("Item added successfully");
-         reset();
-      } catch (error) {
-         toast.error(error);
-      }
+   const onSubmit = (data) => {
+      fetch("https://artisan-server.vercel.app/paintings", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(data),
+      })
+         .then(() => {
+            toast.success("Item added successfully");
+            reset();
+         })
+         .catch((error) => toast.error(error));
    };
 
    const textareaClass = classNames({
@@ -63,26 +60,15 @@ export default () => {
                className="grid gap-y-6 w-full"
                onSubmit={handleSubmit(onSubmit)}
             >
-               <div className="grid gap-y-2">
-                  <label
-                     htmlFor="subcategory"
-                     className="text-sm font-semibold text-gray-900"
-                  >
-                     Subcategory
-                  </label>
-                  <select
-                     id="subcategory"
-                     value={subcategories[0]}
-                     {...register("subcategory")}
-                     className="p-3 h-[2.875rem] focus:ring-primary-100 focus:border-primary-500 shadow-sm border-gray-300 text-sm text-gray-900 rounded-md border outline-none focus:ring-2 appearance-none placeholder-gray-500"
-                  >
-                     {subcategories.map((category) => (
-                        <option key={category} value={category.toLowerCase()}>
-                           {category}
-                        </option>
-                     ))}
-                  </select>
-               </div>
+               <Select
+                  label="Subcategory"
+                  options={subcategories}
+                  errors={errors}
+                  {...register("subcategory", {
+                     validate: (value) =>
+                        value !== "-" ? true : "Subcategory is required",
+                  })}
+               />
 
                <Input
                   label="Username"
