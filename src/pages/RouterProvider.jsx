@@ -17,7 +17,7 @@ const router = createBrowserRouter([
          {
             path: "/",
             element: <Homepage />,
-            loader: () => fetch("http://localhost:3000/"),
+            loader: () => fetch("https://artisan-server.vercel.app"),
          },
          {
             path: "/paintings/add",

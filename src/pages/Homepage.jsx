@@ -5,13 +5,20 @@ import HeroSection from "@containers/HeroSection";
 import SectionHeading from "@containers/SectionHeading";
 import FiveStar from "@containers/FiveStar";
 import NewsLetter from "@containers/NewsLetter";
+import PaintingCrad from "@containers/PaintingCrad";
 
 export default () => {
-   const { categories } = useLoaderData();
+   const { categories, paintings } = useLoaderData();
 
    return (
       <>
-         <HeroSection />
+         <section className="mt-8 relative extend-beyond-parent">
+            <h1 className="mx-auto px-5 lg:px-0 -mb-4 lg:-mb-8 max-w-md md:max-w-screen-md text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 z-20 md:leading-snug lg:leading-snug">
+               A Gallery Showcasing Artisan Creativity
+            </h1>
+
+            <HeroSection />
+         </section>
 
          <section>
             <SectionHeading heading="Categories">
@@ -20,25 +27,59 @@ export default () => {
                touch.
             </SectionHeading>
 
-            <main className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-10">
+            <main className="flex flex-wrap gap-x-16 gap-y-10 justify-center">
                {categories.map((category) => (
-                  <div key={category._id} className="grid gap-y-6 text-center">
-                     <div className="rounded-[16rem_16rem_1rem_1rem] h-96 border overflow-hidden">
+                  <div
+                     key={category._id}
+                     className="grid gap-y-6 text-center justify-items-center w-64"
+                  >
+                     <div className="rounded-full border overflow-hidden aspect-square">
                         <img
                            src={category.image}
                            className="object-cover w-full h-full"
                         />
                      </div>
                      <div className="grid gap-y-5">
-                        <h3 className="font-semibold text-primary-600 font-display text-3xl sm:text-3xl">
+                        <h3 className="font-semibold text-gray-800 text-xl">
                            {category.name}
                         </h3>
-                        <p className="sm:text-lg font-light text-ellipsis truncate line-clamp-3">
-                           {category.description}
-                        </p>
                      </div>
                   </div>
                ))}
+            </main>
+         </section>
+
+         <section>
+            <SectionHeading heading="Paintings & Drawings">
+               Explore a spectrum of masterpieces, from captivating paintings to
+               intricate drawings, all curated to inspire your inner artist.
+            </SectionHeading>
+
+            <main className="grid gap-8 content-start lg:grid-cols-3">
+               <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-8 content-start">
+                  <PaintingCrad
+                     className="min-h-56 lg:aspect-square"
+                     data={paintings[1]}
+                  />
+                  <PaintingCrad className="h-56" data={paintings[3]} />
+               </div>
+               <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-8 content-start">
+                  <PaintingCrad
+                     className="min-h-56 lg:h-96"
+                     data={paintings[0]}
+                  />
+                  <PaintingCrad
+                     className="min-h-56 xl:min-h-96"
+                     data={paintings[4]}
+                  />
+               </div>
+               <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-8 content-start">
+                  <PaintingCrad
+                     className="min-h-56 lg:aspect-square"
+                     data={paintings[2]}
+                  />
+                  <PaintingCrad className="h-56" data={paintings[5]} />
+               </div>
             </main>
          </section>
 
@@ -51,26 +92,27 @@ export default () => {
             <Swiper
                modules={[Autoplay]}
                autoplay
-               className="max-w-screen-md text-center sm:text-lg leading-relaxed"
+               className="max-w-screen-md text-center text-gray-800 leading-relaxed"
             >
                <SwiperSlide className="grid gap-y-6 justify-items-center content-start">
                   <p>
-                     Stunning mastery of color and form! Your painting
-                     effortlessly captures the subtle interplay of light and
-                     shadow, drawing the viewer into a mesmerizing world of
-                     depth and emotion. Each brushstroke seems to dance on the
-                     canvas, inviting contemplation and admiration. A true
-                     masterpiece!
+                     I recently purchased a breathtaking sunset mountain
+                     landscape painting from this store. The painting arrived
+                     promptly, well-packaged, and in pristine condition. The
+                     colors are vibrant, and the attention to detail is
+                     remarkable. It adds such warmth and tranquility to my
+                     living room. I highly recommend this store to anyone
+                     looking for high-quality artwork.
                   </p>
-                  <div class="relative flex items-center gap-x-4 text-left">
+                  <div className="relative flex items-center gap-x-4 text-left">
                      <img
-                        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                        class="h-10 w-10 rounded-full bg-gray-50"
+                        src="https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
+                        className="h-10 w-10 rounded-full bg-gray-50"
                      />
-                     <div class="text-sm leading-6">
-                        <p class="font-semibold text-gray-900">
+                     <div className="text-sm leading-6">
+                        <p className="font-semibold text-gray-900">
                            <span>
-                              <span class="absolute inset-0"></span>Lindsay
+                              <span className="absolute inset-0"></span>Lindsay
                               Walton
                            </span>
                         </p>
@@ -81,23 +123,21 @@ export default () => {
 
                <SwiperSlide className="grid gap-y-6 justify-items-center content-start">
                   <p>
-                     The painting and drawings evoke a sense of wonder and
-                     intrigue that lingers long after the first glance. The
-                     composition is thoughtful, leading the eye on a journey of
-                     discovery through intricate layers of meaning. The use of
-                     color and texture adds richness and complexity, inviting
-                     viewers to immerse themselves in the beauty of the artist's
-                     artistry. Truly remarkable!
+                     I bought a as a gift for my wife, and it exceeded all
+                     expectations. The use of oil paints creates such a rich and
+                     the details are impeccable. My wife was thrilled with her
+                     gift, and it now hangs proudly in our home. Thank you for
+                     the exceptional service and beautiful artwork!
                   </p>
-                  <div class="relative flex items-center gap-x-4 text-left">
+                  <div className="relative flex items-center gap-x-4 text-left">
                      <img
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        class="h-10 w-10 rounded-full bg-gray-50"
+                        className="h-10 w-10 rounded-full bg-gray-50"
                      />
-                     <div class="text-sm leading-6">
-                        <p class="font-semibold text-gray-900">
+                     <div className="text-sm leading-6">
+                        <p className="font-semibold text-gray-900">
                            <span>
-                              <span class="absolute inset-0"></span>Jesse
+                              <span className="absolute inset-0"></span>Jesse
                               Vilinsky
                            </span>
                         </p>
@@ -108,22 +148,21 @@ export default () => {
 
                <SwiperSlide className="grid gap-y-6 justify-items-center content-start">
                   <p>
-                     The drawings possess a rare elegance and precision that
-                     command attention. The attention to detail is exquisite,
-                     rendering every line with purpose and grace. There's a
-                     delicate balance between realism and interpretation that
-                     lends your work a timeless quality. Bravo on creating such
-                     captivating pieces!
+                     Charcoal Desert is a stunning piece of art. The contrast
+                     and depth created with charcoal are impressive. It truly
+                     transports you to the vastness of the desert. I only wish
+                     it was still in stock so I could recommend it to others!
                   </p>
-                  <div class="relative flex items-center gap-x-4 text-left">
+                  <div className="relative flex items-center gap-x-4 text-left">
                      <img
                         src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        class="h-10 w-10 rounded-full bg-gray-50"
+                        className="h-10 w-10 rounded-full bg-gray-50"
                      />
-                     <div class="text-sm leading-6">
-                        <p class="font-semibold text-gray-900">
+                     <div className="text-sm leading-6">
+                        <p className="font-semibold text-gray-900">
                            <span>
-                              <span class="absolute inset-0"></span>Al Woodworth
+                              <span className="absolute inset-0"></span>Al
+                              Woodworth
                            </span>
                         </p>
                         <FiveStar />
