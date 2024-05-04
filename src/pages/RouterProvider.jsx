@@ -6,6 +6,7 @@ import Login from "@pages/Login";
 import Register from "@pages/Register";
 import Homepage from "@pages/Homepage";
 import Contact from "@pages/Contact";
+import PaintingDetails from "@pages/PaintingDetails";
 import AddPainting from "@pages/AddPainting";
 
 const router = createBrowserRouter([
@@ -18,6 +19,15 @@ const router = createBrowserRouter([
             path: "/",
             element: <Homepage />,
             loader: () => fetch("https://artisan-server.vercel.app"),
+         },
+         {
+            path: "/paintings/:id",
+            element: (
+               <PrivateRoute>
+                  <PaintingDetails />
+               </PrivateRoute>
+            ),
+            loader: async ({ params }) => fetch(`https://artisan-server.vercel.app/paintings/${params.id}`),
          },
          {
             path: "/paintings/add",

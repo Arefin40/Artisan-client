@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import HeroSection from "@containers/HeroSection";
 import SectionHeading from "@containers/SectionHeading";
-import FiveStar from "@containers/FiveStar";
+import StarRating from "@containers/StarRating";
 import NewsLetter from "@containers/NewsLetter";
 import PaintingCrad from "@containers/PaintingCrad";
 
@@ -116,7 +116,7 @@ export default () => {
                               Walton
                            </span>
                         </p>
-                        <FiveStar />
+                        <StarRating rating="5" />
                      </div>
                   </div>
                </SwiperSlide>
@@ -141,7 +141,7 @@ export default () => {
                               Vilinsky
                            </span>
                         </p>
-                        <FiveStar />
+                        <StarRating rating="5" />
                      </div>
                   </div>
                </SwiperSlide>
@@ -165,7 +165,7 @@ export default () => {
                               Woodworth
                            </span>
                         </p>
-                        <FiveStar />
+                        <StarRating rating="5" />
                      </div>
                   </div>
                </SwiperSlide>
