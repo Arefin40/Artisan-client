@@ -50,7 +50,7 @@ export default () => {
                         <StarRating rating={rating} className="rating" />
 
                         <Button
-                           to={`/paintings/${_id}`}
+                           to={`/painting/${_id}`}
                            className="view-btn text-center col-span-2 sm:col-span-1"
                         >
                            View

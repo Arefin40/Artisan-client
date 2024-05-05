@@ -31,7 +31,7 @@ const router = createBrowserRouter([
              },
          },
          {
-            path: "/paintings/:id",
+            path: "/painting/:id",
             element: (
                <PrivateRoute>
                   <PaintingDetails />

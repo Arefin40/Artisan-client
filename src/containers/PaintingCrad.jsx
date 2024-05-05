@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default ({ className, data }) => {
    return (
-      <Link to={`/paintings/${data._id}`}>
+      <Link to={`/painting/${data._id}`}>
          <div
             className={`relative w-full border rounded-2xl flex items-center justify-center ${className} overflow-hidden isolate`}
          >
