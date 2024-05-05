@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import HeroSection from "@containers/HeroSection";
@@ -29,22 +29,21 @@ export default () => {
 
             <main className="flex flex-wrap gap-x-16 gap-y-10 justify-center">
                {categories.map((category) => (
-                  <div
-                     key={category._id}
-                     className="grid gap-y-6 text-center justify-items-center w-64"
-                  >
-                     <div className="rounded-full border overflow-hidden aspect-square">
-                        <img
-                           src={category.image}
-                           className="object-cover w-full h-full"
-                        />
+                  <Link key={category._id} to={`/paintings/${category.slug}`}>
+                     <div className="grid gap-y-6 text-center justify-items-center w-64">
+                        <div className="rounded-full border overflow-hidden aspect-square">
+                           <img
+                              src={category.image}
+                              className="object-cover w-full h-full"
+                           />
+                        </div>
+                        <div className="grid gap-y-5">
+                           <h3 className="font-semibold text-gray-800 text-xl">
+                              {category.name}
+                           </h3>
+                        </div>
                      </div>
-                     <div className="grid gap-y-5">
-                        <h3 className="font-semibold text-gray-800 text-xl">
-                           {category.name}
-                        </h3>
-                     </div>
-                  </div>
+                  </Link>
                ))}
             </main>
          </section>

@@ -22,9 +22,13 @@ const router = createBrowserRouter([
             loader: () => fetch("https://artisan-server.vercel.app"),
          },
          {
-            path: "/paintings",
+            path: "/paintings/:subcategory?",
             element: <ArtsAndCrafts />,
-            loader: () => fetch("https://artisan-server.vercel.app/paintings"),
+            loader: async ({ params }) => { 
+               return params.subcategory
+                     ? fetch(`https://artisan-server.vercel.app/paintings?subcategory=${params.subcategory}`)
+                     : fetch("https://artisan-server.vercel.app/paintings");
+             },
          },
          {
             path: "/paintings/:id",
