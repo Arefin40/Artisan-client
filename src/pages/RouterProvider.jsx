@@ -8,6 +8,7 @@ import Homepage from "@pages/Homepage";
 import Contact from "@pages/Contact";
 import PaintingDetails from "@pages/PaintingDetails";
 import AddPainting from "@pages/AddPainting";
+import ArtsAndCrafts from "@pages/ArtsAndCrafts";
 
 const router = createBrowserRouter([
    {
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
             path: "/",
             element: <Homepage />,
             loader: () => fetch("https://artisan-server.vercel.app"),
+         },
+         {
+            path: "/paintings",
+            element: <ArtsAndCrafts />,
+            loader: () => fetch("https://artisan-server.vercel.app/paintings"),
          },
          {
             path: "/paintings/:id",

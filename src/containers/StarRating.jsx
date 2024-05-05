@@ -1,6 +1,6 @@
-export default ({ stars = 5, rating = 0 }) => {
+export default ({ stars = 5, rating = 0, className = "" }) => {
    return (
-      <div className="flex items-center gap-x-1">
+      <div className={`flex items-center gap-x-1 ${className}`}>
          {Array.from({ length: stars }).map((_, i) => (
             <svg
                key={i}

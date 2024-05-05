@@ -36,3 +36,45 @@
 .swiper-button-next {
    @apply after:content-['next'];
 }
+
+.table-view {
+   @apply grid-cols-[8rem_1fr] sm:grid-cols-[1fr_repeat(3,6rem)] md:grid-cols-[8rem_1fr_repeat(3,5rem)] lg:grid-cols-[10rem_1fr_repeat(3,8rem)] xl:lg:grid-cols-[10rem_1fr_repeat(3,12rem)];
+
+   grid-template-areas:
+      "image info"
+      "image price"
+      "image rating"
+      "button button";
+}
+
+.artwork {
+   grid-area: image;
+}
+
+.info {
+   grid-area: info;
+}
+
+.price {
+   grid-area: price;
+}
+
+.rating {
+   grid-area: rating;
+}
+
+.view-btn {
+   grid-area: button;
+}
+
+@media (min-width: 640px) {
+   .table-view {
+      grid-template-areas: "info price rating button";
+   }
+}
+
+@media (min-width: 768px) {
+   .table-view {
+      grid-template-areas: "image info price rating button";
+   }
+}
