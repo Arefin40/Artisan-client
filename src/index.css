@@ -37,6 +37,31 @@
    @apply after:content-['next'];
 }
 
+.rating .star {
+   @apply text-gray-300;
+}
+
+.rating:has(:checked) .star,
+.rating:has(:checked) ~ .rating .star {
+   @apply text-amber-400;
+}
+
+.checkbox:checked ~ .checkmark-icon .checkmark-fill {
+   @apply scale-100;
+}
+
+.checkbox:checked ~ .checkmark-icon .checkmark-tick-animated {
+   @apply animate-[checkmark_0ms_forwards];
+}
+
+.checkbox:checked ~ .checkmark-icon .checkmark-fill-animated {
+   @apply animate-scale-check origin-center transform scale-0;
+}
+
+.checkbox:checked ~ .checkmark-icon .checkmark-tick-animated {
+   @apply animate-[250ms_checkmark_150ms_forwards];
+}
+
 .table-view {
    @apply grid-cols-[8rem_1fr] sm:grid-cols-[1fr_repeat(3,6rem)] md:grid-cols-[8rem_1fr_repeat(3,5rem)] lg:grid-cols-[10rem_1fr_repeat(3,8rem)] xl:lg:grid-cols-[10rem_1fr_repeat(3,12rem)];
 

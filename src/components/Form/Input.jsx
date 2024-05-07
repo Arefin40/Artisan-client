@@ -4,7 +4,6 @@ import { forwardRef } from "react";
 export default forwardRef(
    (
       {
-         id,
          name,
          label,
          type = "text",
@@ -39,7 +38,7 @@ export default forwardRef(
          <div className={className}>
             {label && (
                <label
-                  htmlFor={id}
+                  htmlFor={name}
                   className="inline-block mb-2 text-sm font-semibold text-gray-900 "
                >
                   {label}
