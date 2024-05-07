@@ -10,6 +10,7 @@ import PaintingDetails from "@pages/PaintingDetails";
 import AddPainting from "@pages/AddPainting";
 import ArtsAndCrafts from "@pages/ArtsAndCrafts";
 import MyArtsAndCrafts from "@pages/MyArtsAndCrafts";
+import UpdatePainting from "@pages/UpdatePainting";
 
 const router = createBrowserRouter([
    {
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
             element: (
                <PrivateRoute>
                   <MyArtsAndCrafts />
+               </PrivateRoute>
+            ),
+         },
+         {
+            path:"painting/update/:id",
+            element: (
+               <PrivateRoute>
+                  <UpdatePainting />
                </PrivateRoute>
             ),
          },
