@@ -11,3 +11,6 @@ export { default as Eye } from "./Eye";
 export { default as Lock } from "./Lock";
 export { default as Mail } from "./Mail";
 export { default as LogOut } from "./LogOut";
+export { default as Edit } from "./Edit";
+export { default as Delete } from "./Delete";
+export { default as Warning } from "./Warning";

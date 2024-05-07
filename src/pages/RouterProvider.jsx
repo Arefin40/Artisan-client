@@ -9,6 +9,7 @@ import Contact from "@pages/Contact";
 import PaintingDetails from "@pages/PaintingDetails";
 import AddPainting from "@pages/AddPainting";
 import ArtsAndCrafts from "@pages/ArtsAndCrafts";
+import MyArtsAndCrafts from "@pages/MyArtsAndCrafts";
 
 const router = createBrowserRouter([
    {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
                      ? fetch(`https://artisan-server.vercel.app/paintings?subcategory=${params.subcategory}`)
                      : fetch("https://artisan-server.vercel.app/paintings");
              },
+         },
+         {
+            path: "/my-arts-and-crafts",
+            element: (
+               <PrivateRoute>
+                  <MyArtsAndCrafts />
+               </PrivateRoute>
+            ),
          },
          {
             path: "/painting/:id",

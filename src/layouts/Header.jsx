@@ -19,6 +19,11 @@ const navigations = [
       title: "Arts & Crafts",
    },
    {
+      path: "/my-arts-and-crafts",
+      title: "My Arts & Crafts",
+      isProtected: true,
+   },
+   {
       path: "/paintings/add",
       title: "Add Crafts Item",
       isProtected: true,
@@ -48,6 +53,7 @@ export default () => {
                      ({ path, title, isProtected = false }) =>
                         (!isProtected || (isProtected && currentUser)) && (
                            <NavLink
+                              end
                               to={path}
                               key={path}
                               onClick={close}
