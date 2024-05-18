@@ -8,9 +8,7 @@ export default ({
    const { currentUser, signOut } = useAuth();
 
    return (
-      <div
-         className={`${className} grid bg-white flex-shrink-0 text-gray-800 `}
-      >
+      <div className={`${className} grid bg-white flex-shrink-0 text-gray-800 `}>
          <div className="p-2 flex items-center gap-x-4 hover:bg-gray-100 rounded-lg">
             <Avatar
                size="w-9 h-9"
