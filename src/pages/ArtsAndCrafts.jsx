@@ -1,9 +1,12 @@
+import { useFetch } from "@hooks";
 import Button from "@components/Button";
+import LoadingState from "@components/LoadingState";
 import StarRating from "@containers/StarRating";
-import { useLoaderData } from "react-router-dom";
 
 export default () => {
-   const paintings = useLoaderData();
+   const { data: paintings, isLoading } = useFetch("/paintings");
+
+   if (isLoading) return <LoadingState />;
 
    return (
       <section className="mt-4 lg:mt-8 grid gap-y-6 lg:gap-y-12">
@@ -21,7 +24,7 @@ export default () => {
             </div>
 
             <div className="grid gap-y-8">
-               {paintings.map(({ _id, photoUrl, itemName, price, username, rating }) => (
+               {paintings?.map(({ _id, photoUrl, itemName, price, username, rating }) => (
                   <div
                      key={_id}
                      className="table-view grid gap-x-6 lg:gap-x-12 gap-y-4 items-center"

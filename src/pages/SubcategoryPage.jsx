@@ -1,5 +1,7 @@
+import { Link, useParams } from "react-router-dom";
+import { useFetch } from "@hooks";
+import LoadingState from "@components/LoadingState";
 import StarRating from "@containers/StarRating";
-import { Link, useParams, useLoaderData } from "react-router-dom";
 
 const SubcategoryCard = ({ painting }) => {
    return (
@@ -44,7 +46,9 @@ const SubcategoryCard = ({ painting }) => {
 
 const SubcategoryPage = () => {
    const { subcategory } = useParams();
-   const paintings = useLoaderData();
+   const { data: paintings, isLoading } = useFetch(`/paintings?subcategory=${subcategory}`);
+
+   if (isLoading) return <LoadingState />;
 
    return (
       <section className="mt-4 lg:mt-8 grid gap-y-6 lg:gap-y-12">
@@ -53,7 +57,7 @@ const SubcategoryPage = () => {
          </header>
 
          <main className="grid gap-y-6">
-            {paintings.map((painting) => (
+            {paintings?.map((painting) => (
                <SubcategoryCard key={painting._id} painting={painting} />
             ))}
          </main>

@@ -1,10 +1,12 @@
-import DeleteModal from "@containers/DeleteModal";
-import StarRating from "@containers/StarRating";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useFetch } from "@hooks";
 import { useAuth } from "@contexts/AuthContext";
 import { Edit, Delete } from "@icons";
 import toast from "react-hot-toast";
+import DeleteModal from "@containers/DeleteModal";
+import StarRating from "@containers/StarRating";
+import LoadingState from "@components/LoadingState";
 
 const ArtworkCard = ({ painting }) => {
    const [open, setOpen] = useState(false);
@@ -65,9 +67,7 @@ const ArtworkCard = ({ painting }) => {
                         <span className="text-rose-600">Out of stock</span>
                      )}
 
-                     <span className="sm:pl-2">
-                        {!painting.customizable && "Not"} Customizable
-                     </span>
+                     <span className="sm:pl-2">{!painting.customizable && "Not"} Customizable</span>
                   </div>
                </div>
 
@@ -90,16 +90,12 @@ const ArtworkCard = ({ painting }) => {
 
 export default () => {
    const { currentUser } = useAuth();
-   const [paintings, setPaintings] = useState([]);
+   const { data: paintings, isLoading } = useFetch(
+      `/paintings?email=${currentUser?.email}`,
+      currentUser
+   );
 
-   useEffect(() => {
-      fetch(
-         `https://artisan-server.vercel.app/paintings?email=${currentUser?.email}`
-      )
-         .then((res) => res.json())
-         .then((data) => setPaintings(data))
-         .catch((err) => console.error(err));
-   }, [currentUser]);
+   if (isLoading) return <LoadingState />;
 
    const handleFilterChange = (e) => {
       // console.log(e.target.value);
@@ -130,7 +126,7 @@ export default () => {
          </div>
 
          <main className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
-            {paintings.map((painting) => (
+            {paintings?.map((painting) => (
                <ArtworkCard key={painting._id} painting={painting} />
             ))}
          </main>

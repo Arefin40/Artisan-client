@@ -1,10 +1,15 @@
 import Button from "@components/Button";
+import LoadingState from "@components/LoadingState";
 import StarRating from "@containers/StarRating";
+import { useFetch } from "@hooks";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useLoaderData } from "react-router-dom";
 
 export default () => {
-   const painting = useLoaderData();
+   const { id } = useParams();
+   const { data: painting, isLoading } = useFetch(`/paintings/${id}`);
+
+   if (isLoading) return <LoadingState />;
 
    return (
       <section className="mt-4 lg:mt-8 grid lg:grid-cols-2 gap-x-16 gap-y-8">
@@ -18,17 +23,11 @@ export default () => {
          </div>
 
          <div className="p-5 sm:p-8 xl:p-12 border rounded-xl text-sm sm:text-base">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
-               {painting.itemName}
-            </h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">{painting.itemName}</h1>
 
             <div className="my-2.5 sm:my-4 sm:text-lg flex items-center space-x-5 divide-x text-base">
-               <Link
-                  to={`/paintings?subcategory=${painting.subcategory}`}
-                  className="text-primary-600"
-               >
-                  {painting.subcategory.charAt(0).toUpperCase() +
-                     painting.subcategory.slice(1)}
+               <Link to={`/paintings/${painting.subcategory}`} className="text-primary-600">
+                  {painting.subcategory.charAt(0).toUpperCase() + painting.subcategory.slice(1)}
                </Link>
 
                <div className="pl-5 flex items-center gap-x-3">
@@ -42,9 +41,7 @@ export default () => {
                <h1>Artist:</h1>
                <p className="text-gray-800 font-medium">
                   {painting.username}{" "}
-                  <span className="text-sm text-gray-500">
-                     &lt;{painting.email}&gt;
-                  </span>
+                  <span className="text-sm text-gray-500">&lt;{painting.email}&gt;</span>
                </p>
             </div>
 

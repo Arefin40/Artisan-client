@@ -13,7 +13,6 @@ import ArtsAndCrafts from "@pages/ArtsAndCrafts";
 import MyArtsAndCrafts from "@pages/MyArtsAndCrafts";
 import UpdatePainting from "@pages/UpdatePainting";
 
-const API_URL = import.meta.env.APP_API_URL
 
 const router = createBrowserRouter([
    {
@@ -24,18 +23,14 @@ const router = createBrowserRouter([
          {
             path: "/",
             element: <Homepage />,
-            loader: async () => await fetch(API_URL),
          },
          {
             path: "/paintings",
             element: <ArtsAndCrafts />,
-            loader: async () => await fetch(`${API_URL}/paintings`),
          },
          {
             path: "/paintings/:subcategory",
             element: <SubcategoryPage />,
-            loader: async ({ params }) =>
-               fetch(`${API_URL}/paintings?subcategory=${params.subcategory}`),
          },
          {
             path: "/my-arts-and-crafts",
@@ -60,7 +55,6 @@ const router = createBrowserRouter([
                   <PaintingDetails />
                </PrivateRoute>
             ),
-            loader: async ({ params }) => fetch(`${API_URL}/paintings/${params.id}`),
          },
          {
             path: "/paintings/add",
