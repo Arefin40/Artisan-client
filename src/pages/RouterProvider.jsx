@@ -6,11 +6,14 @@ import Login from "@pages/Login";
 import Register from "@pages/Register";
 import Homepage from "@pages/Homepage";
 import Contact from "@pages/Contact";
+import SubcategoryPage from "@pages/SubcategoryPage";
 import PaintingDetails from "@pages/PaintingDetails";
 import AddPainting from "@pages/AddPainting";
 import ArtsAndCrafts from "@pages/ArtsAndCrafts";
 import MyArtsAndCrafts from "@pages/MyArtsAndCrafts";
 import UpdatePainting from "@pages/UpdatePainting";
+
+const API_URL = import.meta.env.APP_API_URL
 
 const router = createBrowserRouter([
    {
@@ -21,16 +24,18 @@ const router = createBrowserRouter([
          {
             path: "/",
             element: <Homepage />,
-            loader: () => fetch("https://artisan-server.vercel.app"),
+            loader: async () => await fetch(API_URL),
          },
          {
-            path: "/paintings/:subcategory?",
+            path: "/paintings",
             element: <ArtsAndCrafts />,
-            loader: async ({ params }) => { 
-               return params.subcategory
-                     ? fetch(`https://artisan-server.vercel.app/paintings?subcategory=${params.subcategory}`)
-                     : fetch("https://artisan-server.vercel.app/paintings");
-             },
+            loader: async () => await fetch(`${API_URL}/paintings`),
+         },
+         {
+            path: "/paintings/:subcategory",
+            element: <SubcategoryPage />,
+            loader: async ({ params }) =>
+               fetch(`${API_URL}/paintings?subcategory=${params.subcategory}`),
          },
          {
             path: "/my-arts-and-crafts",
@@ -55,7 +60,7 @@ const router = createBrowserRouter([
                   <PaintingDetails />
                </PrivateRoute>
             ),
-            loader: async ({ params }) => fetch(`https://artisan-server.vercel.app/paintings/${params.id}`),
+            loader: async ({ params }) => fetch(`${API_URL}/paintings/${params.id}`),
          },
          {
             path: "/paintings/add",

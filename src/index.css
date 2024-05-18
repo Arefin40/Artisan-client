@@ -72,23 +72,23 @@
       "button button";
 }
 
-.artwork {
+.table-view .artwork {
    grid-area: image;
 }
 
-.info {
+.table-view .info {
    grid-area: info;
 }
 
-.price {
+.table-view .price {
    grid-area: price;
 }
 
-.rating {
+.table-view .rating {
    grid-area: rating;
 }
 
-.view-btn {
+.table-view .view-btn {
    grid-area: button;
 }
 
