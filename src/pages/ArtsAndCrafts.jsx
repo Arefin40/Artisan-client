@@ -1,4 +1,5 @@
 import { useFetch } from "@hooks";
+import { Slide } from "react-awesome-reveal";
 import Button from "@components/Button";
 import LoadingState from "@components/LoadingState";
 import StarRating from "@containers/StarRating";
@@ -23,7 +24,7 @@ export default () => {
                <p className="text-center">Action</p>
             </div>
 
-            <div className="grid gap-y-8">
+            <Slide direction="right" cascade damping={0.015} triggerOnce className="grid gap-y-8">
                {paintings?.map(({ _id, photoUrl, itemName, price, username, rating }) => (
                   <div
                      key={_id}
@@ -59,7 +60,7 @@ export default () => {
                      </Button>
                   </div>
                ))}
-            </div>
+            </Slide>
          </main>
       </section>
    );

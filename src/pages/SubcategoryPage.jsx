@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "@hooks";
+import { Fade } from "react-awesome-reveal";
 import LoadingState from "@components/LoadingState";
 import StarRating from "@containers/StarRating";
 
@@ -66,11 +67,11 @@ const SubcategoryPage = () => {
             {subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} Paintings
          </header>
 
-         <main className="grid gap-y-6">
+         <Fade cascade damping={0.25} triggerOnce className="grid gap-y-6">
             {paintings?.map((painting) => (
                <SubcategoryCard key={painting._id} painting={painting} />
             ))}
-         </main>
+         </Fade>
       </section>
    );
 };

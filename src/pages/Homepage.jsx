@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { JackInTheBox } from "react-awesome-reveal";
+import { Typewriter } from "react-simple-typewriter";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useFetch } from "@hooks";
@@ -15,7 +17,13 @@ export default () => {
       <>
          <section className="mt-8 relative extend-beyond-parent">
             <h1 className="mx-auto px-5 lg:px-0 -mb-4 lg:-mb-8 max-w-md md:max-w-screen-md text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 dark:text-neutral-100 z-20 md:leading-snug lg:leading-snug">
-               A Gallery Showcasing Artisan Creativity
+               <span className="block">A Gallery Showcasing</span>
+               <span className="block min-h-10 sm:min-h-12 lg:min-h-20">
+                  <Typewriter
+                     words={["Paintings", "Drawings", "Crafts", "Masterpieces"]}
+                     className="some"
+                  />
+               </span>
             </h1>
 
             <HeroSection />
@@ -30,16 +38,18 @@ export default () => {
             <main className="flex flex-wrap gap-x-16 gap-y-10 justify-center">
                {data?.categories.map((category) => (
                   <Link key={category._id} to={`/paintings/${category.slug}`}>
-                     <div className="grid gap-y-6 text-center justify-items-center w-64">
-                        <div className="rounded-full border dark:border-neutral-700 overflow-hidden aspect-square">
-                           <img src={category.image} className="object-cover w-full h-full" />
+                     <JackInTheBox triggerOnce fraction={1}>
+                        <div className="grid gap-y-6 text-center justify-items-center w-64">
+                           <div className="rounded-full border dark:border-neutral-700 overflow-hidden aspect-square">
+                              <img src={category.image} className="object-cover w-full h-full" />
+                           </div>
+                           <div className="grid gap-y-5">
+                              <h3 className="font-semibold text-gray-800 dark:text-neutral-100 text-xl">
+                                 {category.name}
+                              </h3>
+                           </div>
                         </div>
-                        <div className="grid gap-y-5">
-                           <h3 className="font-semibold text-gray-800 dark:text-neutral-100 text-xl">
-                              {category.name}
-                           </h3>
-                        </div>
-                     </div>
+                     </JackInTheBox>
                   </Link>
                ))}
             </main>

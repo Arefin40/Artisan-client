@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useFetch } from "@hooks";
 import { useAuth } from "@contexts/AuthContext";
+import { Fade } from "react-awesome-reveal";
 import { Select } from "@components/Form";
 import { Edit, Delete } from "@icons";
 import toast from "react-hot-toast";
@@ -25,58 +25,62 @@ const ArtworkCard = ({ painting }) => {
 
    return (
       <>
-         <div className="grid gap-y-3 sm:gap-y-6 group w-full text-sm sm:text-base">
-            <div className="p-3 sm:p-5 max-h-full aspect-square border-[.375rem] sm:border-[.625rem] border-black shadow-xl dark:shadow-black/50 bg-white">
-               <div className="relative w-full h-full">
-                  <img
-                     src={painting.photoUrl}
-                     className="w-full h-full object-cover object-center"
-                  />
+         <Fade triggerOnce>
+            <div className="grid gap-y-3 sm:gap-y-6 group w-full text-sm sm:text-base">
+               <div className="p-3 sm:p-5 max-h-full aspect-square border-[.375rem] sm:border-[.625rem] border-black shadow-xl dark:shadow-black/50 bg-white">
+                  <div className="relative w-full h-full">
+                     <img
+                        src={painting.photoUrl}
+                        className="w-full h-full object-cover object-center"
+                     />
 
-                  <div className="py-1 hidden absolute bottom-0 sm:bottom-6 inset-x-0 group-hover:flex justify-center gap-x-4 bg-white text-gray-800 dark:text-neutral-100 backdrop-filter backdrop-blur-md bg-opacity-5">
-                     <Link
-                        to={`/painting/update/${painting._id}`}
-                        className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-primary-500 backdrop-filter backdrop-blur-md bg-opacity-80 transform transition-all active:scale-90"
-                     >
-                        <Edit />
-                     </Link>
+                     <div className="py-1 hidden absolute bottom-0 sm:bottom-6 inset-x-0 group-hover:flex justify-center gap-x-4 bg-white text-gray-800 dark:text-neutral-100 backdrop-filter backdrop-blur-md bg-opacity-5">
+                        <Link
+                           to={`/painting/update/${painting._id}`}
+                           className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-primary-500 backdrop-filter backdrop-blur-md bg-opacity-80 transform transition-all active:scale-90"
+                        >
+                           <Edit />
+                        </Link>
 
-                     <button
-                        onClick={() => setOpen(true)}
-                        className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-rose-500 backdrop-filter backdrop-blur-md bg-opacity-80 transform transition-all active:scale-90"
-                     >
-                        <Delete />
-                     </button>
-                  </div>
-               </div>
-            </div>
-
-            <div className="grid gap-y-2 content-start sm:justify-items-center sm:text-center">
-               <Link to={`/painting/${painting._id}`}>
-                  <h1 className="text-gray-800 dark:text-neutral-100 text-base sm:text-lg font-semibold">
-                     {painting.itemName}
-                  </h1>
-               </Link>
-
-               <div className="grid xl:flex items-center gap-1 sm:gap-2 text-sm xl:divide-x divide-neutral-700 sm:justify-items-center">
-                  <StarRating rating={painting.rating} />
-
-                  <div className="xl:pl-2 grid sm:flex gap-1 sm:gap-2 sm:divide-x divide-neutral-700">
-                     {painting.stockStatus === "available" ? (
-                        <span className="text-emerald-600">In stock</span>
-                     ) : (
-                        <span className="text-rose-600 dark:text-rose-400">Out of stock</span>
-                     )}
-
-                     <span className="sm:pl-2">{!painting.customizable && "Not"} Customizable</span>
+                        <button
+                           onClick={() => setOpen(true)}
+                           className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-rose-500 backdrop-filter backdrop-blur-md bg-opacity-80 transform transition-all active:scale-90"
+                        >
+                           <Delete />
+                        </button>
+                     </div>
                   </div>
                </div>
 
-               <h3 className="sm:mt-2 text-primary-600 text-lg sm:text-xl font-semibold">
-                  ${painting.price}
-               </h3>
+               <div className="grid gap-y-2 content-start sm:justify-items-center sm:text-center">
+                  <Link to={`/painting/${painting._id}`}>
+                     <h1 className="text-gray-800 dark:text-neutral-100 text-base sm:text-lg font-semibold">
+                        {painting.itemName}
+                     </h1>
+                  </Link>
+
+                  <div className="grid xl:flex items-center gap-1 sm:gap-2 text-sm xl:divide-x divide-neutral-700 sm:justify-items-center">
+                     <StarRating rating={painting.rating} />
+
+                     <div className="xl:pl-2 grid sm:flex gap-1 sm:gap-2 sm:divide-x divide-neutral-700">
+                        {painting.stockStatus === "available" ? (
+                           <span className="text-emerald-600">In stock</span>
+                        ) : (
+                           <span className="text-rose-600 dark:text-rose-400">Out of stock</span>
+                        )}
+
+                        <span className="sm:pl-2">
+                           {!painting.customizable && "Not"} Customizable
+                        </span>
+                     </div>
+                  </div>
+
+                  <h3 className="sm:mt-2 text-primary-600 text-lg sm:text-xl font-semibold">
+                     ${painting.price}
+                  </h3>
+               </div>
             </div>
-         </div>
+         </Fade>
 
          {open && (
             <DeleteModal
@@ -121,11 +125,11 @@ const Paintings = ({ user }) => {
             </div>
          </div>
 
-         <main className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
+         <div className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
             {paintings?.map((painting) => (
                <ArtworkCard key={painting._id} painting={painting} />
             ))}
-         </main>
+         </div>
       </>
    );
 };
