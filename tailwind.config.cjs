@@ -3,6 +3,7 @@ import colors from "tailwindcss/colors";
 
 export default {
    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+   darkMode: "class",
    theme: {
       extend: {
          fontFamily: {
@@ -32,8 +33,7 @@ export default {
             },
          },
          animation: {
-            "scale-in":
-               "scale-in 150ms cubic-bezier(0.2, 0, 0.13, 1.5) forwards",
+            "scale-in": "scale-in 150ms cubic-bezier(0.2, 0, 0.13, 1.5) forwards",
             "scale-check": "scale-check 250ms forwards",
             "scale-bounce": "scale-bounce 350ms forwards",
          },

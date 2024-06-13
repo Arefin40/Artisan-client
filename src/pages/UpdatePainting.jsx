@@ -72,10 +72,10 @@ export default () => {
    return (
       <section className="mt-4 lg:mt-8">
          <div className="mb-8 sm:mb-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800 dark:text-neutral-100">
                Update art &amp; Craft
             </h2>
-            <p className="mt-2 leading-8 text-gray-600">
+            <p className="mt-2 leading-8 text-gray-600 dark:text-neutral-400">
                Make necessary changes to update your item
             </p>
          </div>
@@ -85,11 +85,8 @@ export default () => {
             className="grid md:grid-cols-2 lg:grid-cols-[24rem_1fr] gap-x-10 lg:gap-x-16 gap-y-6"
          >
             <div className="grid gap-y-8 content-start">
-               <div className="p-6 border-[.625rem] border-black shadow-xl">
-                  <img
-                     src={painting.photoUrl}
-                     className="object-cover aspect-square"
-                  />
+               <div className="p-6 border-[.625rem] bg-white border-black shadow-xl dark:shadow-black/60">
+                  <img src={painting.photoUrl} className="object-cover aspect-square" />
                </div>
 
                <Input
@@ -107,8 +104,7 @@ export default () => {
                   options={subcategories}
                   errors={errors}
                   {...register("subcategory", {
-                     validate: (value) =>
-                        value !== "-" ? true : "Subcategory is required",
+                     validate: (value) => (value !== "-" ? true : "Subcategory is required"),
                   })}
                />
             </div>
@@ -166,11 +162,7 @@ export default () => {
                      className="flex gap-x-2 items-center flex-row-reverse"
                   >
                      {[5, 4, 3, 2, 1].map((rating) => (
-                        <Radio
-                           key={rating}
-                           value={rating}
-                           className="flex items-center rating"
-                        >
+                        <Radio key={rating} value={rating} className="flex items-center rating">
                            <Star className="w-4 h-4" />
                         </Radio>
                      ))}
@@ -196,11 +188,7 @@ export default () => {
                   </Radio>
                </RadioGroup>
 
-               <Button
-                  type="submit"
-                  color="primary"
-                  className="justify-self-start"
-               >
+               <Button type="submit" color="primary" className="justify-self-start">
                   Submit Change
                </Button>
             </div>

@@ -16,19 +16,22 @@ const DropdownMenu = ({ onLogOut, userData }) => {
    ];
 
    return (
-      <ul className="py-2 mt-2 hidden lg:grid absolute right-0 top-full w-48 bg-white shadow-md rounded-md text-sm font-medium z-50 border text-gray-600">
+      <ul className="py-2 mt-2 hidden lg:grid absolute right-0 top-full w-48 bg-white dark:bg-neutral-700 shadow-md rounded-md text-sm font-medium z-50 border dark:border-neutral-700 text-gray-600 dark:text-neutral-400 dark:border-neutral-700/50 dark:shadow-black/50">
          {userData ? (
             <>
-               <div className="mx-2 pb-2 mb-2 flex items-center gap-x-3 border-b">
-                  <img src={userData?.photoURL} className="w-8 h-8 rounded-full border" />
-                  <h3 className="text-gray-800">{userData?.displayName}</h3>
+               <div className="mx-2 pb-2 mb-2 flex items-center gap-x-3 border-b dark:border-neutral-600">
+                  <img
+                     src={userData?.photoURL}
+                     className="w-8 h-8 rounded-full border dark:border-neutral-700"
+                  />
+                  <h3 className="text-gray-800 dark:text-neutral-400">{userData?.displayName}</h3>
                </div>
 
                {navigations.map(({ path, label }) => (
                   <Link
                      key={path}
                      to={path}
-                     className="px-3 py-2 flex items-center gap-x-3 hover:bg-gray-100 hover:text-gray-800 rounded-md"
+                     className="px-3 py-2 flex items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-neutral-600 hover:text-gray-800 dark:hover:text-neutral-300"
                   >
                      <span>{label}</span>
                   </Link>
@@ -36,7 +39,7 @@ const DropdownMenu = ({ onLogOut, userData }) => {
 
                <button
                   onClick={onLogOut}
-                  className="w-full px-3 py-2 flex items-center gap-x-3 hover:bg-gray-100 hover:text-gray-800 rounded-md"
+                  className="w-full px-3 py-2 flex items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-neutral-600 hover:text-gray-800 dark:hover:text-neutral-300"
                >
                   <span>Log out</span>
                </button>
@@ -66,16 +69,19 @@ const TriggerButton = ({ onClick, userData, className = "flex" }) => {
    return (
       <button
          onClick={onClick}
-         className={`p-1.5 ${className} items-center gap-x-3 border rounded-full`}
+         className={`p-1.5 ${className} items-center gap-x-3 border dark:border-neutral-700 rounded-full`}
       >
          <div className="ml-2 w-5 h-5 flex items-center justify-center flex-shrink-0">
             <Menu className="w-4 h-4" />
          </div>
 
          {userData ? (
-            <img src={userData?.photoURL} className="w-7 h-7 rounded-full border flex-shrink-0" />
+            <img
+               src={userData?.photoURL}
+               className="w-7 h-7 rounded-full border dark:border-neutral-700 flex-shrink-0"
+            />
          ) : (
-            <Account className="w-7 h-7 rounded-full border flex-shrink-0" />
+            <Account className="w-7 h-7 rounded-full border dark:border-neutral-700 flex-shrink-0" />
          )}
       </button>
    );

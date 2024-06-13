@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 import classNames from "@utils/classNames";
-import {
-   colors,
-   hoverColors,
-   deepHoverColors,
-   borderColors,
-   textColors,
-} from "@utils/properties";
+import { colors, hoverColors, deepHoverColors, borderColors, textColors } from "@utils/properties";
 
 export default ({
    type = "button",
@@ -33,17 +27,14 @@ export default ({
       "rounded-full": rounded, // Fully rounded corners
 
       // Styles for ghost button and text button variants
-      [textColors[color] + " " + hoverColors[color]]:
-         color in colors && variant === "text",
+      [textColors[color] + " " + hoverColors[color]]: color in colors && variant === "text",
 
       // Styles for outlined button variant
       "border-transparent": variant !== "outlined",
-      [`${borderColors[color]} ${hoverColors[color]}`]:
-         color in colors && variant === "outlined",
+      [`${borderColors[color]} ${hoverColors[color]}`]: color in colors && variant === "outlined",
 
       // Styles for contained button variant
-      [colors[color] + " " + deepHoverColors[color]]:
-         color in colors && variant === "contained",
+      [colors[color] + " " + deepHoverColors[color]]: color in colors && variant === "contained",
 
       // If corresponding color theme doesn't exist, apply the class directly
       [color]: true,
@@ -52,7 +43,7 @@ export default ({
    return to ? (
       <Link
          to={to}
-         className={`${classes} ${className} min-w-16 flex items-center justify-center font-medium border active:scale-95 transition-all leading-normal group`}
+         className={`${classes} ${className} min-w-16 flex items-center justify-center font-medium border dark:border-neutral-700 active:scale-95 transition-all leading-normal group`}
       >
          {startIcon}
          <span>{children}</span>
@@ -63,7 +54,7 @@ export default ({
          type={type}
          onClick={onClick}
          disabled={disabled}
-         className={`${classes} ${className} min-w-16 flex items-center justify-center font-medium border active:scale-95 transition-all leading-normal group`}
+         className={`${classes} ${className} min-w-16 flex items-center justify-center font-medium border dark:border-neutral-700 active:scale-95 transition-all leading-normal group`}
       >
          {startIcon}
          <span>{children}</span>

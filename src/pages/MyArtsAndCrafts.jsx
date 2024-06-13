@@ -26,14 +26,14 @@ const ArtworkCard = ({ painting }) => {
    return (
       <>
          <div className="grid gap-y-3 sm:gap-y-6 group w-full text-sm sm:text-base">
-            <div className="p-3 sm:p-5 max-h-full aspect-square border-[.375rem] sm:border-[.625rem] border-black shadow-xl">
+            <div className="p-3 sm:p-5 max-h-full aspect-square border-[.375rem] sm:border-[.625rem] border-black shadow-xl dark:shadow-black/50 bg-white">
                <div className="relative w-full h-full">
                   <img
                      src={painting.photoUrl}
                      className="w-full h-full object-cover object-center"
                   />
 
-                  <div className="py-1 hidden absolute bottom-0 sm:bottom-6 inset-x-0 group-hover:flex justify-center gap-x-4 bg-white text-gray-800 backdrop-filter backdrop-blur-md bg-opacity-5">
+                  <div className="py-1 hidden absolute bottom-0 sm:bottom-6 inset-x-0 group-hover:flex justify-center gap-x-4 bg-white text-gray-800 dark:text-neutral-100 backdrop-filter backdrop-blur-md bg-opacity-5">
                      <Link
                         to={`/painting/update/${painting._id}`}
                         className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-primary-500 backdrop-filter backdrop-blur-md bg-opacity-80 transform transition-all active:scale-90"
@@ -53,19 +53,19 @@ const ArtworkCard = ({ painting }) => {
 
             <div className="grid gap-y-2 content-start sm:justify-items-center sm:text-center">
                <Link to={`/painting/${painting._id}`}>
-                  <h1 className="text-gray-800 text-base sm:text-lg font-semibold">
+                  <h1 className="text-gray-800 dark:text-neutral-100 text-base sm:text-lg font-semibold">
                      {painting.itemName}
                   </h1>
                </Link>
 
-               <div className="grid xl:flex items-center gap-1 sm:gap-2 text-sm xl:divide-x sm:justify-items-center">
+               <div className="grid xl:flex items-center gap-1 sm:gap-2 text-sm xl:divide-x divide-neutral-700 sm:justify-items-center">
                   <StarRating rating={painting.rating} />
 
-                  <div className="xl:pl-2 grid sm:flex gap-1 sm:gap-2 sm:divide-x">
+                  <div className="xl:pl-2 grid sm:flex gap-1 sm:gap-2 sm:divide-x divide-neutral-700">
                      {painting.stockStatus === "available" ? (
                         <span className="text-emerald-600">In stock</span>
                      ) : (
-                        <span className="text-rose-600">Out of stock</span>
+                        <span className="text-rose-600 dark:text-rose-400">Out of stock</span>
                      )}
 
                      <span className="sm:pl-2">{!painting.customizable && "Not"} Customizable</span>
@@ -135,7 +135,7 @@ export default () => {
 
    return (
       <section className="mt-4 lg:mt-8 grid gap-y-6 lg:gap-y-12">
-         <header className="px-8 py-14 bg-primary-50 text-3xl lg:text-5xl font-extrabold text-primary-500 text-center rounded-lg">
+         <header className="px-8 py-14 bg-primary-50 text-3xl lg:text-5xl font-extrabold text-primary-500 dark:bg-primary-900 text-center rounded-lg">
             <h1>My Arts & Crafts</h1>
          </header>
 

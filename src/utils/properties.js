@@ -13,29 +13,30 @@ export const positions = {
 };
 
 export const colors = {
-   standard: "bg-gray-200 text-gray-800",
+   standard: "bg-gray-200 dark:bg-neutral-700 text-gray-800 dark:text-neutral-200",
    dark: "bg-gray-800 text-white",
    primary: "bg-primary-500 text-white",
-   secondary: "bg-indigo-100 text-gray-800",
+   secondary: "bg-indigo-100 text-gray-800 dark:text-neutral-100",
    success: "bg-green-500 text-white",
    error: "bg-rose-500 text-white",
    info: "bg-blue-500 text-white",
-   warning: "bg-amber-400 text-gray-800",
+   warning: "bg-amber-400 text-gray-800 dark:text-neutral-100",
 };
 
 export const hoverColors = {
-   standard: "hover:bg-gray-200 hover:text-gray-800",
+   standard:
+      "hover:bg-gray-200 dark:hover:bg-neutral-600 hover:text-gray-800 dark:text-neutral-200",
    dark: "hover:bg-gray-800 hover:text-white",
    primary: "hover:bg-primary-500 hover:text-white",
-   secondary: "hover:bg-indigo-100 hover:text-gray-800",
+   secondary: "hover:bg-indigo-100 hover:text-gray-800 dark:text-neutral-100",
    success: "hover:bg-green-500 hover:text-white",
    error: "hover:bg-rose-500 hover:text-white",
    info: "hover:bg-blue-500 hover:text-white",
-   warning: "hover:bg-amber-400 hover:text-gray-800",
+   warning: "hover:bg-amber-400 hover:text-gray-800 dark:text-neutral-100",
 };
 
 export const deepHoverColors = {
-   standard: "hover:bg-gray-300",
+   standard: "hover:bg-gray-300 dark:hover:bg-neutral-600",
    dark: "hover:bg-gray-900",
    primary: "hover:bg-primary-600",
    secondary: "hover:bg-indigo-200",
@@ -46,7 +47,7 @@ export const deepHoverColors = {
 };
 
 export const borderColors = {
-   standard: "border-gray-200",
+   standard: "border-gray-200 dark:border-neutral-700",
    dark: "border-gray-800",
    primary: "border-primary-500",
    secondary: "border-indigo-100",
@@ -57,8 +58,8 @@ export const borderColors = {
 };
 
 export const textColors = {
-   standard: "text-gray-800",
-   dark: "text-gray-800",
+   standard: "text-gray-800 dark:text-neutral-200",
+   dark: "text-gray-800 dark:text-neutral-100",
    primary: "text-primary-500",
    secondary: "text-indigo-800",
    success: "text-green-500",

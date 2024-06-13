@@ -35,7 +35,7 @@ export default () => {
          <svg
             width="0"
             height="0"
-            className="absolute z-10 border border-red-600"
+            className="absolute z-10 border dark:border-neutral-700 border-red-600"
          >
             <defs>
                <clipPath id="panorama" clipPathUnits="objectBoundingBox">

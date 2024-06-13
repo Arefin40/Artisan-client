@@ -10,12 +10,12 @@ export default () => {
 
    return (
       <section className="mt-4 lg:mt-8 grid gap-y-6 lg:gap-y-12">
-         <header className="px-8 py-14 bg-primary-50 text-3xl lg:text-5xl font-extrabold text-primary-500 text-center rounded-lg">
+         <header className="px-8 py-14 bg-primary-50 dark:bg-primary-900 text-3xl lg:text-5xl font-extrabold text-primary-500 text-center rounded-lg">
             Arts & Crafts Collection
          </header>
 
-         <main className="grid gap-y-5 text-gray-800">
-            <div className="hidden py-4 md:grid grid-cols-[8rem_1fr_repeat(3,5rem)] lg:grid-cols-[10rem_1fr_repeat(3,8rem)] xl:lg:grid-cols-[10rem_1fr_repeat(3,12rem)] gap-x-6 lg:gap-x-12 font-semibold bg-gray-50 rounded">
+         <main className="grid gap-y-5 text-gray-800 dark:text-neutral-200">
+            <div className="hidden py-4 md:grid grid-cols-[8rem_1fr_repeat(3,5rem)] lg:grid-cols-[10rem_1fr_repeat(3,8rem)] xl:lg:grid-cols-[10rem_1fr_repeat(3,12rem)] gap-x-6 lg:gap-x-12 font-semibold bg-gray-50 dark:bg-neutral-700 rounded">
                <p className="text-center">Image</p>
                <p>Artwork</p>
                <p>Price</p>
@@ -29,7 +29,7 @@ export default () => {
                      key={_id}
                      className="table-view grid gap-x-6 lg:gap-x-12 gap-y-4 items-center"
                   >
-                     <div className="artwork sm:hidden border-4 border-black md:flex items-center justify-center overflow-hidden">
+                     <div className="artwork sm:hidden border-4 bg-white border-black md:flex items-center justify-center overflow-hidden dark:shadow-lg dark:shadow-black/60">
                         <div className="p-3 w-full h-full">
                            <img
                               src={photoUrl}
@@ -41,7 +41,7 @@ export default () => {
 
                      <div className="info sm:space-y-1.5">
                         <p className="font-semibold text-lg">{itemName}</p>
-                        <p className="text-sm">
+                        <p className="text-sm dark:text-neutral-300">
                            <span className="text-gray-500">by:</span> <span>{username}</span>
                         </p>
                      </div>

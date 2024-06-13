@@ -14,7 +14,7 @@ export default () => {
    return (
       <>
          <section className="mt-8 relative extend-beyond-parent">
-            <h1 className="mx-auto px-5 lg:px-0 -mb-4 lg:-mb-8 max-w-md md:max-w-screen-md text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 z-20 md:leading-snug lg:leading-snug">
+            <h1 className="mx-auto px-5 lg:px-0 -mb-4 lg:-mb-8 max-w-md md:max-w-screen-md text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 dark:text-neutral-100 z-20 md:leading-snug lg:leading-snug">
                A Gallery Showcasing Artisan Creativity
             </h1>
 
@@ -31,11 +31,13 @@ export default () => {
                {data?.categories.map((category) => (
                   <Link key={category._id} to={`/paintings/${category.slug}`}>
                      <div className="grid gap-y-6 text-center justify-items-center w-64">
-                        <div className="rounded-full border overflow-hidden aspect-square">
+                        <div className="rounded-full border dark:border-neutral-700 overflow-hidden aspect-square">
                            <img src={category.image} className="object-cover w-full h-full" />
                         </div>
                         <div className="grid gap-y-5">
-                           <h3 className="font-semibold text-gray-800 text-xl">{category.name}</h3>
+                           <h3 className="font-semibold text-gray-800 dark:text-neutral-100 text-xl">
+                              {category.name}
+                           </h3>
                         </div>
                      </div>
                   </Link>
@@ -82,7 +84,7 @@ export default () => {
             <Swiper
                modules={[Autoplay]}
                autoplay
-               className="max-w-screen-md text-center text-gray-800 leading-relaxed"
+               className="max-w-screen-md text-center text-gray-800 dark:text-neutral-100 leading-relaxed"
             >
                <SwiperSlide className="grid gap-y-6 justify-items-center content-start">
                   <p>
@@ -98,7 +100,7 @@ export default () => {
                         className="h-10 w-10 rounded-full bg-gray-50"
                      />
                      <div className="text-sm leading-6">
-                        <p className="font-semibold text-gray-900">
+                        <p className="font-semibold text-gray-900 dark:text-neutral-100">
                            <span>
                               <span className="absolute inset-0"></span>Lindsay Walton
                            </span>
@@ -121,7 +123,7 @@ export default () => {
                         className="h-10 w-10 rounded-full bg-gray-50"
                      />
                      <div className="text-sm leading-6">
-                        <p className="font-semibold text-gray-900">
+                        <p className="font-semibold text-gray-900 dark:text-neutral-100">
                            <span>
                               <span className="absolute inset-0"></span>Jesse Vilinsky
                            </span>
@@ -143,7 +145,7 @@ export default () => {
                         className="h-10 w-10 rounded-full bg-gray-50"
                      />
                      <div className="text-sm leading-6">
-                        <p className="font-semibold text-gray-900">
+                        <p className="font-semibold text-gray-900 dark:text-neutral-100">
                            <span>
                               <span className="absolute inset-0"></span>Al Woodworth
                            </span>

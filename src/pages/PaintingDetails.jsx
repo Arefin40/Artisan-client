@@ -22,8 +22,10 @@ export default () => {
             </div>
          </div>
 
-         <div className="p-5 sm:p-8 xl:p-12 border rounded-xl text-sm sm:text-base">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">{painting.itemName}</h1>
+         <div className="p-5 sm:p-8 xl:p-12 border dark:border-neutral-700 rounded-xl text-sm sm:text-base">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-neutral-100">
+               {painting.itemName}
+            </h1>
 
             <div className="my-2.5 sm:my-4 sm:text-lg flex items-center space-x-5 divide-x text-base">
                <Link to={`/paintings/${painting.subcategory}`} className="text-primary-600">
@@ -39,9 +41,8 @@ export default () => {
 
             <div className="mt-5 flex gap-x-2">
                <h1>Artist:</h1>
-               <p className="text-gray-800 font-medium">
-                  {painting.username}{" "}
-                  <span className="text-sm text-gray-500">&lt;{painting.email}&gt;</span>
+               <p className="text-gray-800 dark:text-neutral-100 font-medium">
+                  {painting.username}
                </p>
             </div>
 
@@ -52,22 +53,22 @@ export default () => {
             <div className="grid gap-y-2">
                <div className="grid grid-cols-[7.5rem_1fr] items-center gap-x-4">
                   <h3>Customizable </h3>
-                  <p className="text-gray-800 font-medium">
-                     <span className="mr-2 font-normal text-gray-400">:</span>{" "}
+                  <p className="text-gray-800 dark:text-neutral-100 font-medium">
+                     <span className="mr-2 font-normal text-gray-400">:</span>
                      {painting.customizable ? "Yes" : "No"}
                   </p>
                </div>
                <div className="grid grid-cols-[7.5rem_1fr] items-center gap-x-4">
                   <h3>Processing time </h3>
-                  <p className="text-gray-800 font-medium">
-                     <span className="mr-2 font-normal text-gray-400">:</span>{" "}
+                  <p className="text-gray-800 dark:text-neutral-100 font-medium">
+                     <span className="mr-2 font-normal text-gray-400">:</span>
                      {painting.processingTime}
                   </p>
                </div>
                <div className="grid grid-cols-[7.5rem_1fr] items-center gap-x-4">
                   <h3>Stock status </h3>
-                  <p className="text-gray-800 font-medium">
-                     <span className="mr-2 font-normal text-gray-400">:</span>{" "}
+                  <p className="text-gray-800 dark:text-neutral-100 font-medium">
+                     <span className="mr-2 font-normal text-gray-400">:</span>
                      {painting.stockStatus === "available" ? (
                         <span className="text-emerald-600">Available</span>
                      ) : (

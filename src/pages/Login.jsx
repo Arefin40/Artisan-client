@@ -5,10 +5,7 @@ import { useAuth } from "@contexts/AuthContext";
 import { Lock, Mail, Google } from "@icons";
 import { Input, PasswordToggler } from "@components/Form";
 import Button from "@components/Button";
-import {
-   getEmailValidationSchema,
-   getPasswordValidationSchema,
-} from "@utils/ValidationSchema";
+import { getEmailValidationSchema, getPasswordValidationSchema } from "@utils/ValidationSchema";
 import Github from "@icons/Github";
 
 export default () => {
@@ -29,23 +26,21 @@ export default () => {
    };
 
    return (
-      <section className="p-8 w-full bg-auth-login">
+      <section className="p-8 w-full bg-auth-login dark:bg-auth-login">
          <div className="mx-auto w-full max-w-lg">
             {/* Login Form */}
             <div className="mb-8 sm:mb-12 text-center">
-               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800">
+               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800 dark:text-neutral-100">
                   Login
                </h2>
-               <p className="mt-2 leading-8 text-gray-600">
+               <p className="mt-2 leading-8 text-gray-600 dark:text-neutral-400">
                   Please enter your details to sign in
                </p>
             </div>
 
             <form
                className="grid gap-y-6 w-full"
-               onSubmit={handleSubmit((data) =>
-                  signInWithEmail(data, redirect)
-               )}
+               onSubmit={handleSubmit((data) => signInWithEmail(data, redirect))}
             >
                <Input
                   label="Email"
@@ -53,10 +48,7 @@ export default () => {
                   placeholder="Enter your email"
                   startIcon={<Mail />}
                   errors={errors}
-                  {...register(
-                     "email",
-                     getEmailValidationSchema({ required: true })
-                  )}
+                  {...register("email", getEmailValidationSchema({ required: true }))}
                />
                <Input
                   label="Password"
@@ -70,18 +62,12 @@ export default () => {
                   }
                   placeholder="Enter your password"
                   errors={errors}
-                  {...register(
-                     "password",
-                     getPasswordValidationSchema({ required: true })
-                  )}
+                  {...register("password", getPasswordValidationSchema({ required: true }))}
                />
 
                <div className="flex items-center justify-center text-sm">
                   <span>Don't have an account?</span>
-                  <Link
-                     to="/register"
-                     className="ml-1 font-semibold text-primary-500"
-                  >
+                  <Link to="/register" className="ml-1 font-semibold text-primary-500">
                      Create one
                   </Link>
                   .
@@ -94,8 +80,8 @@ export default () => {
 
             {/* Singin with Google, Facebook, Github */}
             <div className="my-6 relative mx-auto w-full flex justify-center">
-               <div className="w-full absolute border-b top-1/2 transform -translate-y-1/2"></div>
-               <div className="relative px-4 py-1 bg-white">
+               <div className="w-full absolute border-b dark:border-neutral-700 top-1/2 transform -translate-y-1/2"></div>
+               <div className="relative px-4 py-1 bg-white dark:bg-neutral-800">
                   Or continue with
                </div>
             </div>
@@ -104,15 +90,15 @@ export default () => {
                <Button
                   startIcon={<Google />}
                   variant="outlined"
-                  color="hover:bg-white text-gray-600 rounded-lg"
+                  color="dark:bg-neutral-700 dark:text-neutral-400 hover:bg-white text-gray-600 rounded-lg"
                   onClick={signInWithProvider("google", redirect)}
                >
                   Google
                </Button>
                <Button
-                  startIcon={<Github className="w-5 h-5  text-[#171515]" />}
+                  startIcon={<Github className="w-5 h-5  text-[#171515] dark:text-white" />}
                   variant="outlined"
-                  color="hover:bg-white text-gray-600 rounded-lg"
+                  color="dark:bg-neutral-700 dark:text-neutral-400 hover:bg-white text-gray-600 rounded-lg"
                   onClick={signInWithProvider("github", redirect)}
                >
                   Github

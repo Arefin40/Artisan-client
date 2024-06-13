@@ -28,9 +28,8 @@ export default forwardRef(
          "pr-11": endIcon,
          "pr-3": !endIcon,
          "focus:ring-primary-100 focus:border-primary-500": !errors?.[name],
-         "focus:ring-rose-100 border-rose-500 focus:border-rose-500":
-            errors?.[name],
-         "shadow-sm border-gray-300": !hideBorder,
+         "focus:ring-rose-100 border-rose-500 focus:border-rose-500": errors?.[name],
+         "shadow-sm border-gray-300 dark:border-neutral-600 dark:bg-neutral-700": !hideBorder,
          "bg-transparent border-transparent": hideBorder,
       });
 
@@ -39,7 +38,7 @@ export default forwardRef(
             {label && (
                <label
                   htmlFor={name}
-                  className="inline-block mb-2 text-sm font-semibold text-gray-900 "
+                  className="inline-block mb-2 text-sm font-semibold text-gray-900 dark:text-neutral-100"
                >
                   {label}
                </label>
@@ -64,7 +63,7 @@ export default forwardRef(
                   placeholder={placeholder}
                   onChange={onChange}
                   onBlur={onBlur}
-                  className={`block w-full py-3 ${inputClass} text-sm text-gray-900 rounded-md border outline-none focus:ring-2`}
+                  className={`block w-full py-3 ${inputClass} text-sm text-gray-900 dark:text-neutral-200 rounded-md border outline-none focus:ring-2 dark:placeholder-neutral-400`}
                />
 
                {endIcon && (
@@ -75,9 +74,7 @@ export default forwardRef(
             </div>
 
             {errors?.[name] && (
-               <span className="text-sm text-rose-500">
-                  {errors[name].message}
-               </span>
+               <span className="text-sm text-rose-500">{errors[name].message}</span>
             )}
          </div>
       );

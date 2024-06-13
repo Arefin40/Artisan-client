@@ -48,10 +48,10 @@ export default () => {
    return (
       <section className="mt-4 lg:mt-8">
          <div className="mb-8 sm:mb-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800 dark:text-neutral-100">
                Add art &amp; Craft
             </h2>
-            <p className="mt-2 leading-8 text-gray-600">
+            <p className="mt-2 leading-8 text-gray-600 dark:text-neutral-400">
                Please fillup the following fields to add your item
             </p>
          </div>

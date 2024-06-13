@@ -5,10 +5,7 @@ import { useAuth } from "@contexts/AuthContext";
 import { Input, PasswordToggler } from "@components/Form";
 import Button from "@components/Button";
 
-import {
-   getEmailValidationSchema,
-   getPasswordValidationSchema,
-} from "@utils/ValidationSchema";
+import { getEmailValidationSchema, getPasswordValidationSchema } from "@utils/ValidationSchema";
 
 export default () => {
    document.title = "Artisan  |  Sign up";
@@ -26,13 +23,13 @@ export default () => {
    });
 
    return (
-      <section className="p-8 w-full bg-auth-login">
+      <section className="p-8 w-full bg-auth-login dark:bg-auth-login">
          <div className="mx-auto max-w-lg w-full">
             <div className="mb-8 sm:mb-12 text-center">
-               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800">
+               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-800 dark:text-neutral-100">
                   Register
                </h2>
-               <p className="mt-2 leading-8 text-gray-600">
+               <p className="mt-2 leading-8 text-gray-600 dark:text-neutral-400">
                   Please enter your details to register
                </p>
             </div>
@@ -62,31 +59,21 @@ export default () => {
                   type="email"
                   placeholder="Enter your email"
                   errors={errors}
-                  {...register(
-                     "email",
-                     getEmailValidationSchema({ required: true })
-                  )}
+                  {...register("email", getEmailValidationSchema({ required: true }))}
                />
 
                <div className="relative w-full grid gap-y-1">
                   <Input
                      label="Password"
                      type={showPassword ? "text" : "password"}
-                     endIcon={
-                        <PasswordToggler
-                           {...{ showPassword, setShowPassword }}
-                        />
-                     }
+                     endIcon={<PasswordToggler {...{ showPassword, setShowPassword }} />}
                      placeholder="Enter your password"
                      className="peer"
                      errors={errors}
-                     {...register(
-                        "password",
-                        getPasswordValidationSchema({ required: true })
-                     )}
+                     {...register("password", getPasswordValidationSchema({ required: true }))}
                   />
 
-                  <div className="p-4 hidden peer-focus-within:grid text-sm bg-white rounded-md shadow-md border whitespace-nowrap gap-y-1 tooltip">
+                  <div className="p-4 hidden peer-focus-within:grid text-sm bg-white rounded-md shadow-md border dark:border-neutral-700 whitespace-nowrap gap-y-1 tooltip">
                      <h3 className="text-gray-600 font-medium">
                         Password must contain (at least):
                      </h3>
@@ -100,10 +87,7 @@ export default () => {
 
                <div className="flex items-center justify-center text-sm">
                   <span>Already have an account?</span>
-                  <Link
-                     to="/login"
-                     className="ml-1 font-semibold text-primary-500"
-                  >
+                  <Link to="/login" className="ml-1 font-semibold text-primary-500">
                      Sign in
                   </Link>
                   .
