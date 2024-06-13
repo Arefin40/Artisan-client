@@ -14,7 +14,6 @@ export default ({
                size="w-9 h-9"
                className="rounded-full font-semibold bg-primary-500 text-white border"
                src={currentUser?.photoURL}
-               alt={currentUser?.displayName}
             />
             <h1 className="tex-lg font-semibold">{currentUser?.displayName}</h1>
          </div>

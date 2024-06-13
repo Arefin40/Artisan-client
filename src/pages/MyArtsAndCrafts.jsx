@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFetch } from "@hooks";
 import { useAuth } from "@contexts/AuthContext";
+import { Select } from "@components/Form";
 import { Edit, Delete } from "@icons";
 import toast from "react-hot-toast";
 import DeleteModal from "@containers/DeleteModal";
 import StarRating from "@containers/StarRating";
-import LoadingState from "@components/LoadingState";
+import axios from "@hooks/axios";
 
 const ArtworkCard = ({ painting }) => {
    const [open, setOpen] = useState(false);
@@ -88,40 +89,35 @@ const ArtworkCard = ({ painting }) => {
    );
 };
 
-export default () => {
-   const { currentUser } = useAuth();
-   const { data: paintings, isLoading } = useFetch(
-      `/paintings?email=${currentUser?.email}`,
-      currentUser
-   );
+const Paintings = ({ user }) => {
+   const [paintings, setPaintings] = useState([]);
+   const [customizable, setCustomizable] = useState("all");
 
-   if (isLoading) return <LoadingState />;
-
-   const handleFilterChange = (e) => {
-      // console.log(e.target.value);
-   };
+   useEffect(() => {
+      if (user) {
+         axios
+            .get(`/paintings?email=${user?.email}&customizable=${customizable}`)
+            .then((res) => setPaintings(res.data))
+            .catch((err) => err.message);
+      }
+   }, [user, customizable]);
 
    return (
-      <section className="mt-4 lg:mt-8 grid gap-y-6 lg:gap-y-12">
-         <header className="px-8 py-14 bg-primary-50 text-3xl lg:text-5xl font-extrabold text-primary-500 text-center rounded-lg">
-            <h1>My Arts & Crafts</h1>
-         </header>
-
+      <>
          <div className="py-2 flex justify-center text-sm sm:text-base">
             <div className="grid sm:flex gap-y-2 gap-x-3 items-center justify-items-center">
-               <h1 className="font-medium text-base">Filter by:</h1>
-               <select
-                  defaultValue="-"
-                  onChange={handleFilterChange}
-                  className="px-3 py-1.5 rounded-md bg-gray-100 appearance-none outline-none text-gray-800"
-               >
-                  <option value="-" disabled>
-                     Customization
-                  </option>
-                  <option value="any">Both</option>
-                  <option value="true">Customizable</option>
-                  <option value="false">Not customizable</option>
-               </select>
+               <Select
+                  label="Customization:"
+                  name="filterBy"
+                  className="flex items-center gap-x-2"
+                  disabledDefault={false}
+                  defaultOption={{ label: "Show all", value: "all" }}
+                  onChange={(e) => setCustomizable(e.target.value)}
+                  options={[
+                     { label: "Customizable", value: "customizable" },
+                     { label: "Not customizable", value: "not-customizable" },
+                  ]}
+               />
             </div>
          </div>
 
@@ -130,6 +126,20 @@ export default () => {
                <ArtworkCard key={painting._id} painting={painting} />
             ))}
          </main>
+      </>
+   );
+};
+
+export default () => {
+   const { currentUser } = useAuth();
+
+   return (
+      <section className="mt-4 lg:mt-8 grid gap-y-6 lg:gap-y-12">
+         <header className="px-8 py-14 bg-primary-50 text-3xl lg:text-5xl font-extrabold text-primary-500 text-center rounded-lg">
+            <h1>My Arts & Crafts</h1>
+         </header>
+
+         <Paintings user={currentUser} />
       </section>
    );
 };

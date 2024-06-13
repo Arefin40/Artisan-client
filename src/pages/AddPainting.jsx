@@ -62,6 +62,7 @@ export default () => {
          >
             <div className="grid md:grid-cols-2 gap-x-6 gap-y-6">
                <Input
+                  disabled
                   label="Username"
                   type="text"
                   placeholder="Enter your username"
@@ -72,14 +73,12 @@ export default () => {
                />
 
                <Input
+                  disabled
                   label="Email"
                   type="text"
                   placeholder="Enter your email"
                   errors={errors}
-                  {...register(
-                     "email",
-                     getEmailValidationSchema({ required: true })
-                  )}
+                  {...register("email", getEmailValidationSchema({ required: true }))}
                />
             </div>
 
@@ -99,8 +98,7 @@ export default () => {
                   options={subcategories}
                   errors={errors}
                   {...register("subcategory", {
-                     validate: (value) =>
-                        value !== "-" ? true : "Subcategory is required",
+                     validate: (value) => (value !== "-" ? true : "Subcategory is required"),
                   })}
                />
             </div>
@@ -157,11 +155,7 @@ export default () => {
                   className="flex gap-x-2 items-center flex-row-reverse"
                >
                   {[5, 4, 3, 2, 1].map((rating) => (
-                     <Radio
-                        key={rating}
-                        value={rating}
-                        className="flex items-center rating"
-                     >
+                     <Radio key={rating} value={rating} className="flex items-center rating">
                         <Star className="w-4 h-4" />
                      </Radio>
                   ))}
