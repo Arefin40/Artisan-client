@@ -1,5 +1,5 @@
 {
-  "projects": {
-    "default": "artisan-d4db7"
-  }
+   "projects": {
+      "default": "sa-artisan"
+   }
 }
